@@ -26,6 +26,8 @@ class CartController extends Controller
             'product_id' => 'integer|required',
             'quantity' =>'integer|required',
         ]);
+
+
         $cart_item = new CartItem;
         $cart_item->cart_id = $cart_id;
         $cart_item->product_id = $request->product_id;
@@ -41,8 +43,20 @@ class CartController extends Controller
             $this->makeCart($request);
         }
         $cart_id = session()->get('cart_id');
-        $cart = Cart::find($cart_id);
+        $cart = Cart::with('cart_items')->find($cart_id);
+
         return view('cart.show', compact('cart'));
+    }
+
+    public function delItem(Request $request)
+    {
+        $request->validate([
+            'cart_item' => "required|string"
+        ]);
+
+        $cart_item = CartItem::find($request->cart_item)->first();
+        $cart_item->delete();
+        return $this->show($request);
     }
 
 }

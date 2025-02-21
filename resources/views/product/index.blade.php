@@ -65,7 +65,8 @@
                                     </form>
                                 @endcan
                                 @cannot('update', $product)
-                                <form  action="{{env('APP_URL'). '/cart/addToCart'}}" method="post">
+                                <form  action="{{env('APP_URL'). '/cart/add-to-cart'}}" method="post">
+                                    @csrf
                                     <input type="hidden" name="product" value="{{$product->id}}">
                                     <input type="hidden" value="1">
                                     <button class="btn btn-primary" type="submit">add to cart</button>

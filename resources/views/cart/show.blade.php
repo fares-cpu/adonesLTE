@@ -47,10 +47,10 @@
                                     <input type="range" min="1" max="{{$cart_item->product->instock}}" name="quantity" value="{{$cart_item->quantity}}">
                                 </td>
                     <td>
-                        <form method="POST" action="{{ env('APP_URL') . '/cart/delItem' }}">
+                        <form method="POST" action="{{ env('APP_URL') . '/cart/del-item' }}">
                             @csrf
                             @method('DELETE')
-                            <input type="hidden" name="product_name" value="{{$cart_item->product->name}}">
+                            <input type="hidden" name="cart_item" value="{{$cart_item->id}}">
                             <button type="submit" class = "btn btn-danger">delete </button>
                         </form>
                     </td>

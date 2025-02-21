@@ -53,3 +53,4 @@ Route::post('/profile/me', [ProfileController::class,'show_me'])->name('profile.
 
 Route::get('/cart', [CartController::class,'show'])->name('cart.show')->middleware('auth');
 Route::post('/cart/add-to-cart', [CartController::class,'addToCart'])->name('cart.addItem')->middleware('auth');
+Route::delete('/cart/del-item', [CartController::class, 'delItem'])->name('cart.delItem')->middleware('auth:web');
